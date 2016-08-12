@@ -57,6 +57,7 @@ const ERROR_MESSAGES = {
     'INVALID_REQUEST_ID': 'Invalid request id.',
     'INVALID_CARD_ID': 'Invalid card ID.',
     'INVALID_APPOINTMENT_ID': 'Invalid appointment ID.',
+    'INVALID_REVIEW_CENTRE_URL': 'Invalid review centre url.',
     'INVALID_CLINIC_ID': 'Invalid clinic ID.',
     'INVALID_PROOF_ID': 'Invalid proof ID.',
     'INVALID_CITY_ID': 'Invalid city ID.',

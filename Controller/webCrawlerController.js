@@ -12,7 +12,12 @@ const async = require('async'),
 function crawlReviews(payload, callbackRoute) {
     async.auto({
         crawl: (callback)=> {
-            let arr = [];
+            let arrUrl = payload.url.split('.');
+            if ((payload.url.indexOf('http://www.reviewcentre.com') !== 0) ||
+                (arrUrl[arrUrl.length - 1] && arrUrl[arrUrl.length - 1].toLowerCase() !== 'html')) {
+                return callback(ERROR_MESSAGES.INVALID_REVIEW_CENTRE_URL);
+            }
+            let arrReviews = [];
             let count = 0;
             let osmosis = new Osmosis(payload.url);
             osmosis
@@ -31,7 +36,7 @@ function crawlReviews(payload, callbackRoute) {
 
                 if (count === payload.numberOfReviewsCrawl) {
                     osmosis.stop();
-                    return callback(null, arr);
+                    return callback(null, arrReviews);
                 }
                 else {
                     next(context, data);
@@ -41,14 +46,15 @@ function crawlReviews(payload, callbackRoute) {
                 .data((listing)=> {
                     listing.reviewId = listing.reviewId.replace('ReviewBox-', '');
                     listing.isDeleted = false;
+                    listing.reviewerName = listing.reviewerName || 'Anonymous';
                     listing.reviewDate = util.convertStringDateToDate(listing.reviewDate, 'DD/MM/YYYY');
                     listing.averageRating = parseFloat(listing.averageRating);
                     listing.maxRating = parseFloat(listing.maxRating);
                     count++;
-                    arr.push(listing);
+                    arrReviews.push(listing);
 
                 }).done(()=> {
-                return callback(null, arr);
+                return callback(null, arrReviews);
             })
                 .error((err)=> {
                     return callback(err);
@@ -63,11 +69,14 @@ function crawlReviews(payload, callbackRoute) {
         }]
     }, (err, results)=> {
         if (err)return callbackRoute(util.createErrorResponse(err));
-        return callbackRoute(null, util.createSuccessResponse(`Total Reviews crawled ${results.crawl.length}`));
+        return callbackRoute(null, util.createSuccessResponse(`${results.crawl.length} review(s) crawled.`));
     })
 }
 function getCrawledReviews(queryParams, callbackRoute) {
     async.auto({
+        totalReviews: (callback)=> {
+            Services.reviewService.getReviewsCount(queryParams, callback);
+        },
         reviews: (callback)=> {
             Services.reviewService.getReviews(queryParams, callback);
         }

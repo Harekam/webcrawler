@@ -24,8 +24,17 @@ function bulkUpsertReviews(data, callback) {
 
 function getReviews(data, callback) {
     let query = {isDeleted: false};
-    if (data.reviewId)query.reviewId = data.reviewId;
+    if (data.reviewId) {
+        query.reviewId = data.reviewId;
+        data.limit = 1;
+        data.skip = 0;
+    }
     DaoManager.getData(MODEL, query, {__v: 0, _id: 0}, {lean: true, limit: data.limit, skip: data.skip}, callback);
+}
+function getReviewsCount(data, callback) {
+    let query = {isDeleted: false};
+    if (data.reviewId)query.reviewId = data.reviewId;
+    DaoManager.getCount(MODEL, query, callback);
 }
 function updateReviewById(data, callback) {
     let query = {reviewId: data.reviewId, isDeleted: false};
@@ -39,6 +48,7 @@ function deleteReviewById(data, callback) {
 module.exports = {
     bulkUpsertReviews,
     getReviews,
+    getReviewsCount,
     updateReviewById,
     deleteReviewById
 };
