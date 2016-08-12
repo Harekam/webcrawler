@@ -1,7 +1,8 @@
 {
   "name": "web-crawler",
   "version": "1.0.0",
-  "description": "",
+  "private": true,
+  "description": "web crawler for http://www.reviewcentre.com/",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,6 +23,16 @@
     "request": "^2.74.0",
     "vision": "^4.0.1"
   },
-  "author": "Harekam Singh",
+  "author": {
+    "name": "Harekam Singh",
+    "email": "harekamsingh@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Harekam/webcrawler.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Harekam/webcrawler/issues"
+  },
   "license": "ISC"
 }
