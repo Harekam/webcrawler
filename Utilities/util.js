@@ -2,15 +2,15 @@
  * Created by harekam on 27/08/15.
  */
 'use strict';
-let CONFIG = require('../Config');
-let Joi = require('joi');
-let async = require('async');
-let moment = require('moment');
-let _ = require('lodash');
-let SUCCESS_MESSAGES = CONFIG.RESPONSE_MESSAGES.SUCCESS_MESSAGES;
-let ERROR_MESSAGES = CONFIG.RESPONSE_MESSAGES.ERROR_MESSAGES;
-let STATUS_CODE = CONFIG.CONSTANTS.STATUS_CODE;
-let constants = CONFIG.CONSTANTS;
+const CONFIG = require('../Config');
+const Joi = require('joi');
+const async = require('async');
+const moment = require('moment');
+const _ = require('lodash');
+const SUCCESS_MESSAGES = CONFIG.RESPONSE_MESSAGES.SUCCESS_MESSAGES;
+const ERROR_MESSAGES = CONFIG.RESPONSE_MESSAGES.ERROR_MESSAGES;
+const STATUS_CODE = CONFIG.CONSTANTS.STATUS_CODE;
+const constants = CONFIG.CONSTANTS;
 
 function failActionFunction(request, reply, source, error) {
 
