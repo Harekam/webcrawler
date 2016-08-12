@@ -1,0 +1,27 @@
+{
+  "name": "web-crawler",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "async": "^1.5.2",
+    "good": "^6.6.0",
+    "good-console": "^5.3.1",
+    "handlebars": "^4.0.5",
+    "hapi": "13.2.1",
+    "hapi-swagger": "4.2.1",
+    "inert": "^3.2.0",
+    "joi": "^8.0.2",
+    "lodash": "^4.14.2",
+    "moment": "^2.11.2",
+    "mongoose": "4.4.7",
+    "osmosis": "^1.0.2",
+    "request": "^2.74.0",
+    "vision": "^4.0.1"
+  },
+  "author": "Harekam Singh",
+  "license": "ISC"
+}
